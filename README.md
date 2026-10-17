@@ -1,5 +1,7 @@
 # 18-link cart pendulum
 
+**Live demo: https://cartpole18.netlify.app** (click the canvas, then use the keys below)
+
 An 18-link inverted pendulum balanced on a cart by **one linear motor**, written in Rust.
 
 The simulation integrates the full nonlinear equations of motion; a 1 kHz LQR controller
@@ -14,7 +16,8 @@ cargo run --release --bin headless      # scripted lean + push test
 cargo test --release
 ```
 
-Web build: `./build-web.sh` writes a static site to `dist/`.
+Web build: `./build-web.sh` writes a static site to `dist/` (needs `rustup target add wasm32-unknown-unknown`).
+Deploy: `netlify deploy --prod --dir dist`.
 
 ## Controls
 
