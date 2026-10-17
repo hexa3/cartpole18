@@ -1,0 +1,8 @@
+# The site is built locally with ./build-web.sh and deployed from dist/.
+[build]
+  publish = "dist"
+
+[[headers]]
+  for = "/*.wasm"
+  [headers.values]
+    Content-Type = "application/wasm"

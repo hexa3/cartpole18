@@ -1,0 +1,47 @@
+# 18-link cart pendulum
+
+An 18-link inverted pendulum balanced on a cart by **one linear motor**, written in Rust.
+
+The simulation integrates the full nonlinear equations of motion; a 1 kHz LQR controller
+designed in double-double (~32-digit) precision keeps the chain upright and recovers from
+pushes on any link.
+
+## Run
+
+```sh
+cargo run --release                     # interactive viewer
+cargo run --release --bin headless      # scripted lean + push test
+cargo test --release
+```
+
+Web build: `./build-web.sh` writes a static site to `dist/`.
+
+## Controls
+
+| Key | Action |
+|---|---|
+| ← / → | push the selected link (50 ms pulse) |
+| ↑ / ↓ or click a joint | select link |
+| + / − | push strength |
+| G | random gusts |
+| V | exaggerate bends ×5 / ×20 (drawing only) |
+| S | slow motion |
+| Space | pause |
+| R | reset |
+
+## Notes
+
+- Links taper: each is 1.2× longer and heavier than the one below (3 cm / 0.1 kg at the cart
+  up to 67 cm / 2.2 kg at the top). A uniform 18-link chain needs LQR gains around 1e14 and is
+  knocked over by sub-nanonewton pushes; the taper keeps it well posed.
+- An 18-link chain hugely amplifies disturbances: a ~1 µN, 50 ms push bends it a few degrees.
+  It survives up to roughly 2.4 µN with a 150 N motor limit.
+- It balances from a small lean (1°); it does not swing up from hanging.
+
+## Layout
+
+- `src/model.rs` – nonlinear dynamics, RK4
+- `src/dd.rs` – double-double arithmetic and dense matrices
+- `src/lqr.rs` – analytic linearization, ZOH discretization, Riccati solve (structured doubling)
+- `src/sim.rs` – closed loop with force-limited motor
+- `src/main.rs` – macroquad viewer
