@@ -48,3 +48,11 @@ Deploy: `netlify deploy --prod --dir dist`.
 - `src/lqr.rs` – analytic linearization, ZOH discretization, Riccati solve (structured doubling)
 - `src/sim.rs` – closed loop with force-limited motor
 - `src/main.rs` – macroquad viewer
+
+## License
+
+[MIT](LICENSE)
+
+---
+
+<p align="center">Built by <a href="https://sheheryar.xyz">Sheheryar</a> · <a href="https://github.com/hexa3">github.com/hexa3</a></p>

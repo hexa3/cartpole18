@@ -2,6 +2,11 @@
 name = "cartpole18"
 version = "0.1.0"
 edition = "2024"
+authors = ["Sheheryar Ahmad <hello@sheheryar.xyz>"]
+description = "18-link inverted pendulum balanced on a cart by one linear motor (LQR)"
+license = "MIT"
+repository = "https://github.com/hexa3/cartpole18"
+homepage = "https://cartpole18.netlify.app"
 
 [dependencies]
 macroquad = "0.4"
